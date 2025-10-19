@@ -1,0 +1,299 @@
+:root {
+    --ps5-blue: #0070d1;
+    --ps5-black: #0E0E0E;
+    --ps5-light-black: #141212e7;
+    --ps5-gray: #BDBDBD;
+    --ps5-white: #FFFFFF;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Poppins', Verdana, Geneva, Tahoma, sans-serif;
+    color: var(--ps5-white);
+    overflow-x: hidden;
+}
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh; 
+    z-index: -1; 
+    overflow: hidden;
+}
+
+.video-background video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    opacity: 0.35; 
+}
+section {
+    position: relative;
+    background-color: rgba(14, 14, 14, 0.037);
+    padding: 100px 5%;
+}
+h1, h2, h3 {
+    font-family: 'Luckiest Guy', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 700;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 20px 30px;
+    z-index: 1000;
+}
+
+.logo-container {
+    position: relative;
+    padding: 15px 15px 15px 15px;
+    width: 120px;
+    height: 120px;
+}
+.logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.8s ease-in-out;
+}
+.logo-1 {
+    animation: fadeLogo 6s infinite;
+}
+.logo-2 {
+    opacity: 0;
+    animation: fadeLogo 3s infinite;
+    animation-delay: 1.5s;
+}
+@keyframes fadeLogo {
+    0% { opacity: 0; }
+    25% { opacity: 1; }
+    75% { opacity: 1; }
+    100% { opacity: 0; }
+}
+#banner {
+    height: 100vh;
+    background-image: linear-gradient(to bottom, rgba(14, 14, 14, 0.4), rgba(14, 14, 14, 0.9)), url('banner-profil.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+@keyframes pop-in {
+    0% {
+        transform: scale(0.5); 
+        opacity: 0;
+    }
+    80% {
+        transform: scale(1.1); 
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1); 
+        opacity: 1;
+    }
+}
+@keyframes glitch {
+    2%, 64% {
+        transform: translate(2px, 0) skew(0deg);
+    }
+    4%, 60% {
+        transform: translate(-2px, 0) skew(0deg);
+    }
+    62% {
+        transform: translate(0, 0) skew(5deg); 
+    }
+}
+.banner-content h1 {
+    font-size: 4rem;
+    letter-spacing: 5px;
+    text-shadow: 0 0 15px var(--ps5-blue);
+    animation: pop-in 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s both;
+}
+.banner-content p {
+    font-size: 1.5rem;
+    color: var(--ps5-gray);
+    position: relative;
+    animation: glitch 1s linear infinite;
+}
+.banner-content p::before,
+.banner-content p::after{
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.banner-content p::before {
+    left: 2px;
+    text-shadow: -2px 0 #e207d0; 
+    clip-path: rect(44px, 450px, 56px, 0);
+    animation: glitch 3s infinite linear alternate-reverse;
+}
+.banner-content p::after {
+    left: -1px;
+    text-shadow: -2px 0 #131313;
+    clip-path: rect(85px, 450px, 140px, 0); 
+    animation: glitch 1.9s infinite linear alternate-reverse; 
+}
+.banner-content img{
+    opacity:70% ;
+    bottom: 0;
+    right: 0;
+    width: auto;
+    height: 200px;
+    position: absolute;    
+}
+#profil {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    overflow: hidden;
+    transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+}
+.hidden {
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateY(20%);
+}
+.show {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+}
+.profil-content {
+    flex-basis: 50%;
+}
+.profil-content h2 {
+    font-size: 2.5rem;
+    color: var(--ps5-blue);
+    box-shadow: 0 1px 20px rgba(39, 114, 220, 0.9);
+    margin-bottom: 20px;
+}
+.profil-content h3 {
+    font-size: 1.8rem;
+    color: #090707;
+    text-shadow:0 10px 7px 10px #131314;
+    margin-bottom: 15px;
+    margin-top: auto;
+}
+.profil-content p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: rgba(14, 14, 14, 0.9);
+}
+.profil-image {
+    flex-basis: 40%;
+}
+.profil-image img {
+    width: 110%;
+    border-radius: 15px;
+    box-shadow: 0 17px 30px rgba(3, 123, 244, 0.3);
+    transform: translateX(120%);
+    transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+#profil.show .profil-image img {
+    transform: translateX(0);
+}
+#kontak {
+    text-align: center;
+    overflow: hidden;
+    background: transparent;
+}
+.kontak-content {
+    position: relative;
+    z-index: 3;
+}
+.kontak-content h2 {
+    font-size: 2.55rem;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: #090707;
+    text-shadow: 0 0 10px var(--ps5-blue);
+}
+.kontak-content p {
+    font-size: 1.2rem;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: #080808e7;
+    margin-bottom: 40px;
+}
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.social-link {
+    background-color: var(--ps5-white);
+    color: var(--ps5-black);
+    text-decoration: none;
+    padding: 15px 25px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.social-link:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 112, 209, 0.5);
+}
+.social-link img {
+    width: 24px;
+    height: 24px;
+}
+.wave-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    z-index: 2;
+}
+.wave-container::before, .wave-container::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background-size: 50% 100%;
+}
+.wave-container::before {
+    bottom: 0;
+    background-image: radial-gradient(circle at 50% 0, transparent 40%, var(--ps5-blue) 40%);
+    animation: wave 10s linear infinite;
+    opacity: 0.5;
+}
+.wave-container::after {
+    bottom: 5px;
+    background-image: radial-gradient(circle at 50% 0, transparent 40%, var(--ps5-white) 40%);
+    animation: wave 12s linear infinite reverse;
+    opacity: 0.4;
+}
+@keyframes wave {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+@media (max-width: 768px) {
+    #profil {
+        flex-direction: column;
+        text-align: center;
+    }
+    .profil-image {
+        margin-top: 40px;
+    }
+    .banner-content h1 {
+        font-size: 2.5rem;
+    }
+}
